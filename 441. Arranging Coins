@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int arrangeCoins(int n) {
+        int count = 1;
+        int coins = n;
+        int row = 1;
+
+        while (coins > 0)
+        {
+            row++;
+            if (coins - row > 0)
+            {
+                coins -= row;
+                count++;
+            }
+            else
+                break;
+        }
+        
+        return count;
+    }
+};

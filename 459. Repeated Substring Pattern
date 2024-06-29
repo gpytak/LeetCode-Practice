@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        string str = "";
+        int c = 0;
+        while (c < (s.size()/2))
+        {
+            str += s[c];
+            string temp = str;
+            while (temp.size() < s.size())
+                temp += str;
+            if (temp == s)
+                return true;
+            c++;
+        }
+        return false;
+    }
+};

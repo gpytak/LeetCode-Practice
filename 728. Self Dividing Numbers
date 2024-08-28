@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool self_dividing (int num)
+    {
+        int n = num;
+        while(n)
+        {
+            int digit = n % 10;
+            if(digit == 0)
+                return false;
+            if(num % digit != 0)
+                return false;
+            n = n / 10;
+        }
+        return true;
+    }
+
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> ans;
+
+        for (int i = left; i <= right; i++)
+        {
+            if (self_dividing(i))
+                ans.push_back(i);
+        }
+
+        return ans;
+    }
+};

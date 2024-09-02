@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+        map<char,int> mp;
+        for (int i = 0; i < licensePlate.size(); i++)
+            if (isalpha(licensePlate[i]))
+                mp[tolower(licensePlate[i])]++;
+        string ans;
+        int min = INT_MAX;
+        for (int i = 0; i < words.size(); i++)
+        {
+            map<char,int> temp;
+            bool f = true;
+            for (int j = 0; j < words[i].size(); j++)
+                temp[words[i][j]]++;
+            for (auto k:mp)
+            {
+                if(temp[k.first] < k.second)
+                {
+                    f = false;
+                    break;
+                }
+            }
+            if (f && words[i].size() < min)
+            {
+                min = words[i].size();
+                ans = words[i];
+            }
+        }
+        return ans;
+    }
+};

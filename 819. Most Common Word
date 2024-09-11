@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        string result;
+        int count = 0;
+        unordered_map<string, int> mp;
+        int i = 0;
+        while (i < paragraph.size())
+        {
+            string result = "";
+            while(i < paragraph.size() && isalpha(paragraph[i]))
+            {
+                result += tolower(paragraph[i]);
+                i++;
+            }
+            if(result != "")
+                mp[result]++;
+            i++;
+        }
+        for(auto& x : banned)
+            mp.erase(x);
+        for(auto& [key, value] : mp)
+        {
+            if (count < value)
+            {
+                result = key;
+                count = value;
+            }
+        }
+        return result;
+    }
+};

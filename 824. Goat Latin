@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string toGoatLatin(string sentence) {
+        string goatLatin = "";
+        static const string VOWELS = "aAeEiIoOuU";
+        size_t count = 1;
+        
+        std::istringstream ss(sentence); 
+        
+    	while (ss)
+	    { 
+        	std::string word; 
+        	ss >> word;
+            
+            if(!word.empty())
+            {
+                goatLatin += VOWELS.find(word[0]) != string::npos ? word + "ma" + std::string(count, 'a') + " " : word.substr(1, word.length() - 1) + word[0] + "ma" +  std::string(count, 'a') + " ";
+            }
+             
+            count ++;
+	    }
+        return goatLatin.substr(0, goatLatin.length() - 1);  
+    }
+};

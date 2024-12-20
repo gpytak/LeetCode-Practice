@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int distanceBetweenBusStops(vector<int>& distance, int start, int destination) {
+        int clockwise = 0;
+        int counterclockwise = 0;
+        int sumDistance = accumulate(distance.begin(), distance.end(), 0);
+        if(start > destination)
+        {
+            swap(start,destination);            
+        }
+        for (int i = start; i < destination; i++ )
+        {
+            clockwise += distance[i];
+
+        }
+        counterclockwise = sumDistance - clockwise;
+        if ( clockwise > counterclockwise)
+        {
+            return counterclockwise;
+        }
+        else
+        {
+            return clockwise;
+        }
+    }
+};

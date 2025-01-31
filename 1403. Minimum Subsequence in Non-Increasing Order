@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> minSubsequence(vector<int>& nums) {
+        vector<int>ans;
+        int totalSum = 0;
+        int currentSum = 0;
+        
+        for(int i:nums)
+        {
+            totalSum += i;
+        }
+        
+        sort(nums.begin(), nums.end());
+        
+        for(int i = nums.size()-1; i >= 0; i--)
+        {
+            currentSum += nums[i];
+            totalSum -= nums[i];
+            ans.push_back(nums[i]);
+            if(currentSum > totalSum)
+            {
+                break;
+            }
+        }
+        return ans;
+    }
+};

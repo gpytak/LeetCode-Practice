@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int findCenter(vector<vector<int>>& edges) {
+        int num0 = 0, num1 = 0;
+
+        for (int i = 1; i < edges.size(); i++)
+        {
+            if (edges[0][0] == edges[i][0] || edges[0][0] == edges[i][1])
+                num0++;
+            if (edges[0][1] == edges[i][0] || edges[0][1] == edges[i][1])
+                num1++;
+        }
+
+        return num0 > num1 ? edges[0][0] : edges[0][1];
+    }
+};

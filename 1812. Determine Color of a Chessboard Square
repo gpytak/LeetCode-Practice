@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool squareIsWhite(string coordinates) {
+        char ind0 = coordinates[0];
+        char ind1 = coordinates[1];
+        if ((ind0 == 'a' || ind0 == 'c' || ind0 == 'e' || ind0 == 'g') && (ind1 == '1' || ind1 == '3' || ind1 == '5' || ind1 == '7'))
+        {
+            return false;
+        }
+        if ((ind0 == 'b' || ind0 == 'd' || ind0 == 'f' || ind0 == 'h') && (ind1 == '2' || ind1 == '4' || ind1 == '6' || ind1 == '8'))
+        {
+            return false;
+        }
+
+        return true;
+    }
+};

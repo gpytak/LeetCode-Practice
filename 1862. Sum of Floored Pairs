@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int sumOfFlooredPairs(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        long long ans = 0;
+        int mx = nums[nums.size()-1];
+
+        unordered_map<int,int> mp;
+        for(int i = 0; i < nums.size(); i++) {
+            mp[nums[i]]++;
+        }
+
+        for(auto x: mp) 
+        {
+            int val = x.first;
+            long long k = 0;
+            while (val <= mx) 
+            {
+                int idx = lower_bound(nums.begin(), nums.end(), val) - nums.begin();
+                k += (nums.size()-idx);
+                val += x.first;
+            }
+            ans += k*x.second;
+        }
+        return ans%1000000007;
+    }
+};

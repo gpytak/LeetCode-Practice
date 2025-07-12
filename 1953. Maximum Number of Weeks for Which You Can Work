@@ -1,0 +1,12 @@
+class Solution {
+public:
+    long long numberOfWeeks(vector<int>& milestones) {
+        long long max = *max_element(milestones.begin(), milestones.end());
+        long long sum = 0;
+        for(auto x : milestones)
+            sum += x;
+        if(sum - max >= max)
+            return sum;
+        else return 2*(sum-max) +1;
+    }
+};

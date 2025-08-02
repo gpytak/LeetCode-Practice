@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int ans=INT_MAX;
+    void solve(int start, vector<int>& v, int target,vector<int>& grps){
+        if(start>=v.size()){
+            int temp = grps.size();
+            ans=min(ans,temp);
+            return ;
+        }
+        if(grps.size()>ans)return;
+		
+        int ans=INT_MAX;
+        for(int i=0;i<grps.size();i++){
+            if(grps[i]+v[start]<=target){
+                grps[i]+=v[start];
+                solve(start+1,v,target,grps);
+                grps[i]-=v[start];
+            }
+        }
+        grps.push_back(v[start]);
+        solve(start+1,v,target,grps);
+        grps.pop_back();        
+    }
+    int minSessions(vector<int>& v, int target) {
+        int n=v.size();
+        vector<int>grps;
+        solve(0,v,target,grps);
+        return ans;
+    }
+};

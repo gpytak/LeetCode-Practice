@@ -1,0 +1,20 @@
+class Solution {
+public:   
+    int firstDayBeenInAllRooms(vector<int>& nextVisit) {
+        long long n=nextVisit.size(),day=0, mod=1e9+7;
+        vector<long long> min_day_to_visit(n,0);
+        for(int i=0;i<n;i++)
+        {
+            if(i==n-1)  return day;
+            if(nextVisit[i]==i) day+=2;
+            else
+            {
+                int dobara=(day-min_day_to_visit[nextVisit[i]]+mod)%mod;
+                day+=((dobara+2)%mod);
+            }
+            day%=mod;
+            min_day_to_visit[i+1]=day;
+        }
+        return -1;
+    }
+};

@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool areNumbersAscending(string s) {
+        int n=s.length();
+        istringstream a(s);
+        string b;
+        int d=0;
+        while(a>>b){
+            if(isdigit(b[0])){
+                int c=stoi(b);
+                if(d>=c){
+                    return false;
+                }
+                d=c;
+            }
+        }
+        return true;
+        
+    }
+};

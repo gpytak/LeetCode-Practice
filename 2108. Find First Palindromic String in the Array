@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isPalindrome(const std::string& word) {
+        for (int l = 0, r = word.size() - 1; l < r; l++, r--) {
+            if (word[l] != word[r]) return false;
+        }
+        return true;
+    }
+    std::string firstPalindrome(std::vector<std::string>& words) {
+        for (auto& word : words) {
+            if (isPalindrome(word)) return word;
+        }
+        return "";
+    }
+};

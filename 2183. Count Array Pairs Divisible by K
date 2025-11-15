@@ -1,0 +1,16 @@
+class Solution {
+public:
+    long long countPairs(vector<int>& nums, int k) {
+        unordered_map <int, int> gcdCount;
+        long long cnt = 0;
+        for (int num: nums) {
+            int hcf = gcd(num, k);
+            int required = k/hcf;
+            for (pair<int, int> p: gcdCount) {
+                if (p.first % required == 0) cnt += p.second;
+            }
+            gcdCount[hcf]++;
+        }
+        return cnt;
+    }
+};

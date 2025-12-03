@@ -1,0 +1,17 @@
+class Solution {
+public:
+long long helper_reverse(long long n, bool isSkip) {
+    long long result = 0;
+    for (n = isSkip ? n / 10 : n; n > 0; n /= 10)
+        result = result * 10 + n % 10;
+    return result;
+}
+vector<long long> kthPalindrome(vector<int>& qr, int len) {
+    long long srt = pow(10, (len + 1) / 2 - 1), end = pow(10, (len + 1 ) / 2), multi = pow(10, len / 2);    
+    vector<long long> result;
+    for (int q : qr)
+        result.push_back(srt + q > end ? -1 : 
+            (srt + q - 1) * multi + helper_reverse(srt + q - 1, len % 2));
+    return result;
+}
+};

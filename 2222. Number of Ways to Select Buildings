@@ -1,0 +1,21 @@
+class Solution {
+public:
+    long long numberOfWays(string s) {
+        int prefOne = 0 , prefZero = 0 , suffOne = count(s.begin() , s.end() , '1') , suffZero = count(s.begin() , s.end() , '0');
+        long long ans = 0;
+        for(char &c : s){
+            if(c == '1')
+            {
+                ans += (1ll * prefZero * suffZero);
+                prefOne++;
+                suffOne--;
+            }else
+            {
+                ans += (1ll * prefOne * suffOne);
+                prefZero++;
+                suffZero--;
+            }
+        }
+        return ans;
+    }
+};

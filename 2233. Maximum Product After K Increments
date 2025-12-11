@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maximumProduct(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end());
+        int minNum = nums[0], i = 0;
+        long long ans = 1;
+
+        for (int j=0; j<k; j++) {
+            nums[i++]++;
+
+            if ((i > nums.size()-1) || (nums[i] > minNum)) {
+                i = 0;
+                minNum++;
+            }
+        }
+
+        for (auto& n: nums) ans = (ans*n)%1000000007;
+
+        return ans;
+    }
+};

@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int count(string s){
+        int c=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i]==' '){
+                c++;
+            }
+        }
+        return c+1;
+    }
+    string largestWordCount(vector<string>& messages, vector<string>& senders) {
+        unordered_map<string,int> mp;
+        for(int i=0;i<messages.size();i++)
+        {
+            int num=count(messages[i]);
+            mp[senders[i]]+=num;
+        }
+        string t="";
+        int maxFreq=0;
+        
+    for (auto& s : mp)
+    {
+        if (s.second > maxFreq) {
+            maxFreq = s.second;
+            t = s.first;
+        } else if (s.second == maxFreq) {
+            t = max(t, s.first);
+        }
+    }
+        return t;
+    }
+};
